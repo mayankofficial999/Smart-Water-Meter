@@ -1,4 +1,4 @@
-# sdn_project
+# Smart Water Meter Companion App
 
 App to discover and share information to cloud via BLE.
 
