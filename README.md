@@ -1,6 +1,6 @@
 # sdn_project
 
-A new Flutter project.
+App to discover and share information to cloud via BLE.
 
 ## Getting Started
 

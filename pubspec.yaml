@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_blue: ^0.8.0
+  shared_preferences: ^2.0.18
   easy_firebase: 
     path: '/Users/mayanksharma/Documents/Flutter_Apps/easy_firebase'
 
