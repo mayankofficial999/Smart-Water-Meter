@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sdn_project/components/banner.dart';
 import 'package:sdn_project/components/deviceList.dart';
 import 'package:sdn_project/util/timer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -46,10 +47,22 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           var data = await TaskTimer().getData();
-          print('Button: $data');
-          EasyFire().getRtdbObject().setData('/Data',data);
+          var prefs = await SharedPreferences.getInstance();
+          var rtdb = EasyFire().getRtdbObject();
+          var cloudData = await rtdb.getData('/Data');
           setState(() {
-            syncStatus = true;
+            if(cloudData.toString() == data.toString()) {
+              syncStatus = true;
+            } 
+            else {
+              syncStatus = false;
+              if((cloudData as List).length > data.length) {
+                prefs.setStringList("mainData", cloudData as List<String>);
+              }
+              else {
+                rtdb.setData('/Data',data);
+              }
+            }
           });
         },
         child: const Icon(Icons.refresh),

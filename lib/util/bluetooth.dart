@@ -11,6 +11,8 @@ Future<Map<String,String>> getBluetoothData() async {
   var results = await flutterBlue.startScan(timeout: const Duration(seconds: 2));
   
   for (ScanResult r in results) {
+      // if(r.device.name.isNotEmpty)
+      // print(r.device.name);
       // Search for our device name
       if(r.device.name == 'ESP32-BLE-Server') {
         var x = DateTime.now().millisecondsSinceEpoch;

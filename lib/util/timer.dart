@@ -8,6 +8,7 @@ class TaskTimer {
   Map<String, String> bleData = {"meter_id": "0","flow": "0", "total": "0", "time": "0"};
   late Timer timer;
   late SharedPreferences prefs;
+
   void init() async {
     prefs = await SharedPreferences.getInstance();
     //prefs.setStringList("mainData", []);
